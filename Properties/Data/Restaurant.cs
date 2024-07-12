@@ -16,7 +16,7 @@ public class Restaurant
 
     public List<Rating> Ratings {get; set;} = new(); 
 
-    public double? AverageRating
+    public double AverageRating
     {
         get 
         { 
