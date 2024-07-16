@@ -27,5 +27,5 @@ public async Task<IEnumerable<RestaurantListItem>> GetAllRestaurantAsync()
         return restaurants;
     }
 
-  
+ 
 }

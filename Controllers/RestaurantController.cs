@@ -14,7 +14,7 @@ public RestaurantController(IRestaurantService service)
 [HttpGet] //Not necessary as EF assumes it is Get unless otherwise spesiffied. 
 public async Task<IActionResult> Index()
 {
-List<RestaurantListItem> restaurants = await _service.GetAllRestaurantsAsync();
+IEnumerable<RestaurantListItem> restaurants = await _service.GetAllRestaurantAsync();
 return View(restaurants);
 }
 }
