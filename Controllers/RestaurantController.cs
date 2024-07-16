@@ -16,5 +16,13 @@ public async Task<IActionResult> Index()
 {
 IEnumerable<RestaurantListItem> restaurants = await _service.GetAllRestaurantAsync();
 return View(restaurants);
+} 
+
+[HttpGet] 
+public IActionResult Create() 
+{
+    return View(); 
 }
+
+
 }

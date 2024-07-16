@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantMVC.Models.Restaurant;
 using RestaurantRaterApi.Data;
+using RestaurantRaterMVC.Models.Restaurant;
 using RestaurantRaterMVC.Services.Restaurants;
 
-namespace RestaurantRaterMVC.Services.Restaurant; 
+namespace RestaurantRaterMVC.Services.Restaurants; 
 
 public class RestaurantService : IRestaurantService
 {
@@ -12,6 +13,17 @@ public class RestaurantService : IRestaurantService
     {
     _context = context;
     } 
+
+    public async Task<bool> CreateRestaurantAsync(RestaurantCreate model) 
+    {
+    Restaurant  entity = new()
+    {
+        Name = model.Name,
+        Location = model.Location
+    };
+    _context.Restaurants.Add(entity);
+    return await _context.SaveChangesAsync() == 1;
+    }
 
 public async Task<IEnumerable<RestaurantListItem>> GetAllRestaurantAsync()
 {
