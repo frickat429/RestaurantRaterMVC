@@ -1,4 +1,5 @@
 using RestaurantMVC.Models.Restaurant;
+using RestaurantRaterApi.Data;
 using RestaurantRaterMVC.Models.Restaurant;
 
 namespace RestaurantRaterMVC.Services.Restaurants;
@@ -10,5 +11,5 @@ Task<IEnumerable<RestaurantListItem>> GetAllRestaurantAsync();
 Task<bool> CreateRestaurantAsync(RestaurantCreate model); 
 
 Task<RestaurantDetail?> GetRestaurantAsync(int id);
-
+Task<bool> UpdateRestaurantAsync(RestaurantEdit model);
 }

@@ -51,5 +51,14 @@ public async Task<IEnumerable<RestaurantListItem>> GetAllRestaurantAsync()
         Score = restaurant.AverageRating
     };
     }
- 
-}
+    public async Task<bool> UpdateRestaurantAsync(RestaurantEdit model) 
+    {
+        Restaurant? entity = await _context.Restaurants.FindAsync(model.Id);
+        if(entity is null) 
+        return false; 
+
+        entity.Name = model.Name;
+        entity.Location = model.Location;
+        return await _context.SaveChangesAsync() == 1;
+    }
+    }
