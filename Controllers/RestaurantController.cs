@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RestaurantMVC.Models.Restaurant;
+using RestaurantRaterMVC.Models.Restaurant;
 using RestaurantRaterMVC.Services.Restaurants;
 
 namespace RestaurantRaterMVC.Controllers;
@@ -24,5 +26,12 @@ public IActionResult Create()
     return View(); 
 }
 
-
+[HttpPost] 
+public async Task<IActionResult> Create(RestaurantCreate model) 
+{
+if(!ModelState.IsValid) 
+return View(model); 
+await _service.CreateRestaurantAsync(model);
+return RedirectToAction(nameof(Index)); 
+}
 }
