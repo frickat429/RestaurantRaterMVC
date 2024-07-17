@@ -7,5 +7,8 @@ public interface IRestaurantService
 {
 Task<IEnumerable<RestaurantListItem>> GetAllRestaurantAsync();
 
-Task<bool> CreateRestaurantAsync(RestaurantCreate model);
+Task<bool> CreateRestaurantAsync(RestaurantCreate model); 
+
+Task<RestaurantDetail?> GetRestaurantAsync(int id);
+
 }

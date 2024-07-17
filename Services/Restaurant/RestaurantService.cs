@@ -38,6 +38,18 @@ public async Task<IEnumerable<RestaurantListItem>> GetAllRestaurantAsync()
         .ToListAsync();
         return restaurants;
     }
-
+    public async Task<RestaurantDetail?> GetRestaurantAsync(int id) 
+    {
+    Restaurant? restaurant = await _context.Restaurants
+    .Include(r => r.Ratings)
+    .FirstOrDefaultAsync(r => r.Id == id);
+    return restaurant is null ? null : new()
+    {
+        Id = restaurant.Id, 
+        Name = restaurant.Name,
+        Location = restaurant.Location,
+        Score = restaurant.AverageRating
+    };
+    }
  
 }
