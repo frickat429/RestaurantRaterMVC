@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RestaurantRaterApi.Data;
+using RestaurantRaterMVC.Services.Ratings;
 using RestaurantRaterMVC.Services.Restaurants;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ options.UseSqlServer(
 ));
 
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+builder.Services.AddScoped<IRatingService, RatingService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
