@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RestaurantMVC.Models.Restaurant;
@@ -47,6 +48,28 @@ if (restaurant is null)
     };
     return View(model);
 } 
+
+//Delete 
+[HttpGet] 
+public async Task<IActionResult> Delete(int id)
+{
+    RestaurantDetail? restaurant = await _service.GetRestaurantAsync(id) ;
+    {
+        if (restaurant is null) 
+    return RedirectToAction(nameof(Index)); 
+    return View(restaurant);
+    }
+
+    
+} 
+
+[HttpPost] 
+[ActionName(nameof(Delete))] 
+public async Task<IActionResult> ConfirmDelete(int id) 
+{
+    await _service.DeleteRestaurantAsync(id);
+    return RedirectToAction(nameof(Index));
+}
 
 [HttpPost] 
 public async Task<IActionResult> Edit(int id, RestaurantEdit model)
