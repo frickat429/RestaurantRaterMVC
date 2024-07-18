@@ -41,3 +41,11 @@
 </div>
 </dl>
 
+@await Component.InvokeAsync(nameof(RestaurantRatings), new {restaurantId = Model.Id})
+
+<div>
+    <a asp-action="Index">Back to list</a>
+    <span>|</span>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>
+
