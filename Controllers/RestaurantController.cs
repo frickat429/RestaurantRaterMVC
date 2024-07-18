@@ -51,11 +51,11 @@ if (restaurant is null)
 [HttpPost] 
 public async Task<IActionResult> Edit(int id, RestaurantEdit model)
 {
-if (ModelState.IsValid) 
+if (!ModelState.IsValid) 
 return View(model);
 
 if(await _service.UpdateRestaurantAsync(model))
-return RedirectToAction(nameof(Details), new {id = id});
+return RedirectToAction(nameof(Details), new { id = id});
 ModelState.AddModelError("Save Error", "Could not update the Restaurant. Please try again ");
 return View(model);
 }
